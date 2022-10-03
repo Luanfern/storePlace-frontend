@@ -1,0 +1,15 @@
+<div class="myCurrency container">
+    <div class="currentCurrency">
+        <b [ngStyle]="{'font-size': '25px'}">Seu Saldo: </b>
+        <div class="currency">{{ account.currency | currency: 'BRL' }}</div>
+    </div>
+    <div class="title">EXTRATO</div>
+    <div class="myExtract">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</div>

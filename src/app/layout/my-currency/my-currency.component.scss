@@ -1,0 +1,32 @@
+.myCurrency{
+    width: 100%;
+    padding-top: 66px;
+    .currentCurrency{
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .currency{
+            font-size: 22px;
+            font-weight: bold;
+            color: green;
+        }
+    }
+    .title{
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.062);
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .myExtract{
+        height: 500px;
+        border: 1px solid rgba(0, 0, 0, 0.062);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+}

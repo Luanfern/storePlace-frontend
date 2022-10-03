@@ -1,0 +1,17 @@
+<nav class="navTemplate d-flex justify-content-between align-items-center">
+    <a routerLink="home">
+        <img class="logo" src="../../../assets/logosp.png" alt="logo" srcset="../../../assets/logosp.png">
+    </a>
+    <div class="navigator d-flex justify-content-end">
+        <!--
+            <a class="btnNav" routerLink="register" routerLinkActive="btnNavActive">Register</a>
+            <a class="btnNav" routerLink="login" routerLinkActive="btnNavActive">Log-in</a> 
+        -->
+        <a class="btnNav" routerLink="mycurrency" routerLinkActive="btnNavActive"><b class="myCurrency">{{ this.account.currency | currency: 'BRL'}}</b> | <i class="bi bi-wallet2"></i></a>
+        <a class="btnNav" routerLink="shoppingkart" routerLinkActive="btnNavActive">Carrinho <i class="bi bi-cart"></i> <b [ngStyle]="{'color': '#4682B4'}" *ngIf="shoppingKart.length > 0"> | {{ shoppingKart.length }}</b></a>
+        <a class="btnNav" routerLink="myaccount" routerLinkActive="btnNavActive">Minha conta <i class="bi bi-person"></i></a>
+    </div>
+</nav>
+
+<!--
+   -->

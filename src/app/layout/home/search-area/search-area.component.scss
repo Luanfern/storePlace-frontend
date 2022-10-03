@@ -1,0 +1,42 @@
+.searchArea{
+    margin: 10px 0;
+    .title{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .lineSearch{
+        padding-right: 20px;
+        @media only screen and (min-width: 575px) and (max-width: 991px) {
+            padding-right: 0px;
+        }
+    }
+    .listCategory{
+        width: 100%;
+        margin: 20px 0;
+        button.title{
+            font-weight: normal;
+            border: none;
+            background-color: white;
+        }
+        ul{
+            margin-left: -20px;
+            margin-top: 10px;
+            li{
+                margin: 2px 0;
+                z-index: 1;
+                list-style: none;
+                transition: 80ms;
+                padding: 10px 10px;
+                background-color: whitesmoke;
+                box-shadow: 0 1px 2px rgb(212, 211, 211);
+                border-radius: 3px;
+                &:hover{
+                    z-index: 3;
+                    background-color: rgb(219, 217, 217);
+                    box-shadow: 0 2px 3px rgb(212, 211, 211);
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}

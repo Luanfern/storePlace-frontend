@@ -1,0 +1,39 @@
+nav{
+    width: 100%;
+    position: fixed;
+    background-color: whitesmoke;
+    box-shadow: 0 2px 1px rgb(192, 190, 190);
+    height: 65px;
+    padding: 0 25px;
+    margin-bottom: 1px;
+    img.logo{
+        height: 61px;
+        width: auto;
+    }
+    div.navigator{
+        width: calc(100% - 61px);
+        .btnNav{
+            padding: 0px 10px;
+            min-width: 80px;
+            background-color: whitesmoke;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            border-radius: 9px;
+            box-shadow: 0 1px 2px rgb(212, 211, 211);
+            color: black;
+            text-decoration: none;
+            transition: 150ms;
+            margin: 0 7px;
+            &:hover{
+                box-shadow: 0 2px 5px rgb(165, 165, 165);
+            }
+            .myCurrency{
+                color: rgb(7, 168, 15);
+            }
+        }
+        .btnNavActive{
+            box-shadow: 0 2px 5px rgb(165, 165, 165);
+        }
+    }
+}

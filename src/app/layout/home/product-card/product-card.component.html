@@ -1,0 +1,17 @@
+<div class="product">
+    <div class="image">
+        <div class="moreAbout"><i class="bi bi-hand-index"></i> para <i class="bi bi-eye-fill"></i></div>
+        <img [src]="product.image" [alt]="product.name">
+    </div>
+    <div class="infoArea">
+        <div class="areaTitle">
+            <div class="title">
+                {{ product.name }}
+            </div>
+        </div>
+        <div class="bottomArea">
+            <div class="price">{{ product.price | currency: 'BRL' }}</div>
+            <button class="addCart" (click)="addToShoppingKart(product)"><i class="bi bi-cart-plus"></i></button>
+        </div>
+    </div>
+</div>

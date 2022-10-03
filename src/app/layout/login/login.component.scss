@@ -1,0 +1,40 @@
+.loginPage{
+    width: 100%;
+    .illustration{
+        position: fixed;
+        width: 35%;
+        background-color: blueviolet;
+        height: calc(100vh - 66px);
+        margin-top: 66px;
+        overflow: hidden;
+        background-color: #94CED5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 100%;
+        }
+        @media only screen and (max-width: 650px) {
+         display: none;
+        }
+    }
+    .loginArea{
+        width: 65%;
+        right: 0;
+        position: absolute;
+        padding: 20px;
+        height: calc(100vh - 66px);
+        margin-top: 66px;
+        @media only screen and (max-width: 600px) {
+            width: 100%;
+            position: relative;
+        }
+        .formArea{
+            width: 400px;
+            .title{
+                font-weight: bold;
+                font-size: 22px;
+            }
+        }
+    }
+}
