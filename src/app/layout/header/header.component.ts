@@ -9,6 +9,7 @@ import { MyAccountService } from 'src/app/shared/services/my-account/my-account.
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public isMenuCollapsed = true;
 
   account: AccountInterface = {
     name: 'luan'
