@@ -1,0 +1,83 @@
+.kartCalculatorArea{
+    margin: 10px 0;
+    .title{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .listKart{
+        width: 100%;
+        margin: 20px 0;
+        button.title{
+            font-weight: normal;
+            border: none;
+            background-color: white;
+        }
+        ul{
+            margin-left: -30px;
+            margin-top: 10px;
+            li{
+                margin: 2px 0;
+                z-index: 1;
+                list-style: none;
+                transition: 80ms;
+                padding: 10px 10px;
+                background-color: whitesmoke;
+                box-shadow: 0 1px 2px rgb(212, 211, 211);
+                border-radius: 3px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                max-height: 45px;
+                .areaTitle{
+                    width: 65%;
+                    line-height: 25px;
+                    .title{
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        font-size: 12px;
+                    }  
+                }
+                .price{
+                    font-size: 15px;
+                }
+            }
+        }
+        .total{
+            border-top: 1px solid black;
+            margin: 2px 0;
+            z-index: 1;
+            list-style: none;
+            transition: 80ms;
+            padding: 10px 10px;
+            border-radius: 3px;
+            z-index: 3;
+            background-color: rgb(219, 217, 217);
+            box-shadow: 0 2px 3px rgb(212, 211, 211);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .continueButton{
+            width: 100%;
+            border: none;
+            margin: 5px 0;
+            z-index: 1;
+            list-style: none;
+            transition: 80ms;
+            padding: 10px 10px;
+            border-radius: 3px;
+            z-index: 3;
+            background-color: rgb(219, 217, 217);
+            box-shadow: 0 2px 3px rgb(212, 211, 211);
+            background-color: rgb(7, 168, 15);
+            font-weight: bold;
+            color: white;
+        }
+        .messageErrorKeepBuying{
+            font-size: 12px;
+            font-weight: bold;
+            color: rgb(145, 1, 1);
+        }
+    }
+}

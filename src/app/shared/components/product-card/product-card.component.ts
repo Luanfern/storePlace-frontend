@@ -9,6 +9,8 @@ import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopp
 })
 export class ProductCardComponent implements OnInit {
 
+  @Input() forRemove: boolean = false;
+
   @Input() product: ProductInterface = {
     name: '',
     code: 0,
@@ -25,8 +27,11 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToShoppingKart(p: ProductInterface){
-    this.myShoppingKart.addProductToKart(p)
+  clickActionButton(p: ProductInterface): void {
+    if (!this.forRemove) {
+      return this.myShoppingKart.addProductToKart(p) 
+    } else {
+      return this.myShoppingKart.removeProductToKart(p)
+    }
   }
-
 }

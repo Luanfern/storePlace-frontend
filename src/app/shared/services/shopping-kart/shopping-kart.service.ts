@@ -10,7 +10,17 @@ export class ShoppingKartService {
 
   constructor() { }
 
+  getmyShoppingKart(): ProductInterface[] {
+    return this.myShoppingKart
+  }
+
   addProductToKart(p: ProductInterface){
     this.myShoppingKart.push(p)
+  }
+
+  removeProductToKart(p: ProductInterface){
+    const index = this.myShoppingKart.indexOf(p)
+    this.myShoppingKart.splice(index, 1)
+    console.log(index)
   }
 }

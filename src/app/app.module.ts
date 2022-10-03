@@ -11,7 +11,7 @@ import { HomeModule } from './layout/home/home.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { MyCurrencyComponent } from './layout/my-currency/my-currency.component';
 import { MyAccountComponent } from './layout/my-account/my-account.component';
-import { ShoppingKartComponent } from './layout/shopping-kart/shopping-kart.component';
+import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,6 @@ import { ShoppingKartComponent } from './layout/shopping-kart/shopping-kart.comp
     RegisterComponent,
     MyCurrencyComponent,
     MyAccountComponent,
-    ShoppingKartComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +29,7 @@ import { ShoppingKartComponent } from './layout/shopping-kart/shopping-kart.comp
 
     //APP MODULES
     HomeModule,
+    ShoppingKartModule,
     ComponentsModule
   ],
   providers: [],

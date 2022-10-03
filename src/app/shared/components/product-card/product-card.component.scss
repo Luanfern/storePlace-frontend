@@ -80,13 +80,19 @@
                 padding: 0 2px;
                 font-size: 15px;
             }
-            .addCart{
+            .cartButton{
                 height: 35px;
                 width: 35px;
                 border: none;
                 font-size: 20px;
+                border-radius: 8px;   
+            }
+            .addCart{
                 background-color: #FFDE59;
-                border-radius: 8px;
+            }
+            .removeCart{
+                background-color: #ff5959;
+                color: white;
             }
         }
     }
@@ -103,7 +109,7 @@
             justify-content: space-between;
             align-items: flex-end;
             width: 150px;
-            height: 120px;
+            height: 95px;
             color: #000;
             font-size: 25px;
         }
