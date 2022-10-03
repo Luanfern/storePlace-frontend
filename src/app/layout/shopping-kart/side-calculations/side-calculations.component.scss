@@ -1,16 +1,10 @@
-.searchArea{
+.kartCalculatorArea{
     margin: 10px 0;
     .title{
         font-weight: bold;
         font-size: 18px;
     }
-    .lineSearch{
-        padding-right: 20px;
-        @media only screen and (min-width: 575px) and (max-width: 991px) {
-            padding-right: 0px;
-        }
-    }
-    .listCategory{
+    .listKart{
         width: 100%;
         margin: 20px 0;
         button.title{
@@ -79,6 +73,11 @@
             background-color: rgb(7, 168, 15);
             font-weight: bold;
             color: white;
+        }
+        .messageErrorKeepBuying{
+            font-size: 12px;
+            font-weight: bold;
+            color: rgb(145, 1, 1);
         }
     }
 }

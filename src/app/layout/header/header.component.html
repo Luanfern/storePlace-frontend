@@ -12,9 +12,15 @@
                       <a class="btnNav" routerLink="register" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Register</a>
                       <a class="btnNav" routerLink="login" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Log-in</a> 
                   -->
-                <a class="btnNav" routerLink="mycurrency" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive"><b class="myCurrency">{{ this.account.currency | currency: 'BRL'}}</b> | <i class="bi bi-wallet2"></i></a>
+
+                  <a class="btnNav" routerLink="register" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Register</a>
+                      <a class="btnNav" routerLink="login" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Log-in</a> 
+
+                <!-- NAVIGATIONS AFTER GET ACCONT
+                  <a class="btnNav" routerLink="mycurrency" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive"><b class="myCurrency">{{ this.account.currency | currency: 'BRL'}}</b> | <i class="bi bi-wallet2"></i></a>
                 <a class="btnNav" routerLink="shoppingkart" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Carrinho <i class="bi bi-cart"></i> <b [ngStyle]="{'color': '#4682B4'}" *ngIf="shoppingKart.length > 0"> | {{ shoppingKart.length }}</b></a>
                 <a class="btnNav" routerLink="myaccount" (click)="isMenuCollapsed = true" routerLinkActive="btnNavActive">Minha conta <i class="bi bi-person"></i></a>
+                -->
             </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="shoppingKart container">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-5 searchArea">
-            <app-side-calculations [kartCalc]="kartProducts"></app-side-calculations>
+            <app-side-calculations [kartCalc]="kartProducts" [keepBuying]="kbgetter()"></app-side-calculations>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-7 listArea">
             <app-lista-de-produtos *ngIf="kartProducts.length > 0; else noKartPriducts" [products]="kartProducts" [toRemove]="true"></app-lista-de-produtos>

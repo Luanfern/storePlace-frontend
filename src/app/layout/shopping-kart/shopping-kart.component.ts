@@ -11,6 +11,7 @@ import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopp
 export class ShoppingKartComponent implements OnInit {
 
   kartProducts: ProductInterface[] = []
+  keepBuying: string = ''
 
   constructor(
     private myAccount: MyAccountService,
@@ -21,5 +22,13 @@ export class ShoppingKartComponent implements OnInit {
     this.kartProducts = this.myShoppingKart.getmyShoppingKart()
     console.log(this.kartProducts)
   }
+
+  kbgetter(): string {
+    if (this.myAccount.currentAccount?.currency == undefined || this.myAccount.currentAccount?.currency <= 0.0) {
+      return 'Indisponível! Verifique seu Saldo.'
+    } else{
+      return ''
+    }
+  } 
 
 }

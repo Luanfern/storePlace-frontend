@@ -9,13 +9,15 @@ import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 export class SideCalculationsComponent implements OnInit, DoCheck {
 
   @Input() kartCalc: ProductInterface[] = []
-
   total: number = 0.0
+  @Input() keepBuying: string = ''
+  disable: boolean = false
 
   constructor() { }
 
   ngOnInit(): void {
     this.calcFinalValue()
+    this.disable = this.keepBuying != '' ? true : false
   }
 
   ngDoCheck(): void {
