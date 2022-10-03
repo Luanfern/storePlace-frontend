@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';
 import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopping-kart.service';
 
@@ -9,12 +10,16 @@ import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopp
 })
 export class ShoppingKartComponent implements OnInit {
 
+  kartProducts: ProductInterface[] = []
+
   constructor(
     private myAccount: MyAccountService,
     private myShoppingKart: ShoppingKartService
   ) { }
 
   ngOnInit(): void {
+    this.kartProducts = this.myShoppingKart.getmyShoppingKart()
+    console.log(this.kartProducts)
   }
 
 }

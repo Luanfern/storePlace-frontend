@@ -1,0 +1,24 @@
+<div class="searchArea">
+    <div class="title">Total da Compra</div>
+    <hr>
+    <div class="listCategory">
+       <!--
+         <p *ngIf="smallScreen">
+            <button type="button" class="title" (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                Calculo <i class="bi bi-caret-down-fill"></i>
+            </button>
+        </p>
+
+        *ngIf="!smallScreen"
+
+         #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed"
+       -->
+        <div >Calculo:</div>
+        <ul>
+            <li class="calculation" *ngFor="let product of kartCalc"> <div class="areaTitle"><p class="title">{{ product.name }}</p></div> <b class="price">{{ product.price | currency: 'BRL' }}</b></li>
+        </ul>
+        <div class="total">Total: <div>{{ total | currency: 'BRL' }}</div></div>
+        <button class="continueButton"> Continuar Compra </button>
+    </div>
+</div>

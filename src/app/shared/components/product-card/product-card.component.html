@@ -11,7 +11,15 @@
         </div>
         <div class="bottomArea">
             <div class="price">{{ product.price | currency: 'BRL' }}</div>
-            <button class="addCart" (click)="addToShoppingKart(product)"><i class="bi bi-cart-plus"></i></button>
+            <button class="cartButton"
+            (click)="clickActionButton(product)"
+            [ngClass]="{addCart: !forRemove, 
+                removeCart: forRemove}">
+                <i class="bi"
+                [ngClass]="{'bi-cart-plus': !forRemove,
+                    'bi-cart-dash': forRemove}">
+            </i>
+        </button>
         </div>
     </div>
 </div>

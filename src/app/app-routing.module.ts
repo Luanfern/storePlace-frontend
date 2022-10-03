@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'myaccount', component: MyAccountComponent},
   {path: 'mycurrency', component: MyCurrencyComponent},
-  {path: 'shoppingkart', component: ShoppingKartComponent},
+  {path: 'shoppingkart', loadChildren: () => import('./layout/shopping-kart/shopping-kart.module').then(m=>m.ShoppingKartModule)},
 ];
 
 @NgModule({
