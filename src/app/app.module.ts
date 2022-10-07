@@ -12,6 +12,8 @@ import { ComponentsModule } from './shared/components/components.module';
 import { MyCurrencyComponent } from './layout/my-currency/my-currency.component';
 import { MyAccountComponent } from './layout/my-account/my-account.component';
 import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module'
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
 
     //APP MODULES
     HomeModule,

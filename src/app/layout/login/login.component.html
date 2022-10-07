@@ -5,17 +5,19 @@
     <div class="loginArea d-flex justify-content-center align-items-center">
       <div class="formArea">
         <p class="title">Log-In to StorePlace</p>
-        <form class="row g-3">
+        <form class="row g-3" [formGroup]="formularioLogin" (ngSubmit)="submitForm()">
           <div class="col-md-12">
             <label for="emailFormRegister" class="form-label">Email</label>
-            <input type="text" class="form-control" id="emailFormRegister">
+            <input type="text" class="form-control" id="emailFormRegister"
+            formControlName="email">
             <div class="invalid-feedback">
               campo inválido!
             </div>
           </div>
           <div class="col-md-12">
             <label for="senhaFormRegister" class="form-label">Senha</label>
-            <input type="text" class="form-control" id="senhaFormRegister">
+            <input type="text" class="form-control" id="senhaFormRegister"
+            formControlName="password">
             <div class="invalid-feedback">
               campo inválido!
             </div>
