@@ -13,6 +13,7 @@ import { MyCurrencyComponent } from './layout/my-currency/my-currency.component'
 import { MyAccountComponent } from './layout/my-account/my-account.component';
 import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     //APP MODULES
     HomeModule,
