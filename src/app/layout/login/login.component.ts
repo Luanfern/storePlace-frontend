@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { catchError, delay, take, tap } from 'rxjs';
 import { AccountInterface } from 'src/app/shared/Interfaces/account-interface';
 import { AuthLoginService } from 'src/app/shared/services/auth-login/auth-login.service';
+import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authLogin: AuthLoginService,
+    private myAccount: MyAccountService,
     ) { }
 
   ngOnInit(): void {

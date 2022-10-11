@@ -6,10 +6,28 @@ import { AccountInterface } from '../../Interfaces/account-interface';
 })
 export class MyAccountService {
 
-  currentAccount: AccountInterface = {
-    name: 'luan',
-    currency: 99.80
+  private islogged: boolean = false
+
+  private currentAccount: AccountInterface = {
+    name: '',
+    currency: 0
   }
 
   constructor() { }
+
+  setAccount(account: AccountInterface){
+    this.currentAccount = account
+  }
+
+  get account(){
+    return this.currentAccount
+  }
+
+  setLogged(){
+    this.islogged = true
+  }
+
+  get logged(){
+    return this.islogged
+  }
 }

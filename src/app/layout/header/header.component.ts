@@ -9,10 +9,13 @@ import { MyAccountService } from 'src/app/shared/services/my-account/my-account.
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  isLoggedHeader: boolean = false;
+  
   public isMenuCollapsed = true;
 
   account: AccountInterface = {
-    name: 'luan'
+    name: ''
   }
 
   shoppingKart: ProductInterface[] = []
@@ -23,8 +26,10 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.account = this.myAccount.currentAccount
+    this.account = this.myAccount.account
     this.shoppingKart = this.myShoppingKart.myShoppingKart
+
+    this.isLoggedHeader = this.myAccount.logged
   }
 
 }

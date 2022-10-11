@@ -19,7 +19,7 @@ export class MyCurrencyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.account = this.myAccount.currentAccount
+    this.account = this.myAccount.account
   }
 
 }
