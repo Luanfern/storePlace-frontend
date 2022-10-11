@@ -5,25 +5,33 @@
     <div class="loginArea d-flex justify-content-center align-items-center">
       <div class="formArea">
         <p class="title">Log-In to StorePlace</p>
+        <div class="alert alert-{{ errorMessage.color }}" role="alert" *ngIf="errorMessage.msg.length > 0">
+          {{ errorMessage.msg }}
+        </div>
         <form class="row g-3" [formGroup]="formularioLogin" (ngSubmit)="submitForm()">
           <div class="col-md-12">
             <label for="emailFormRegister" class="form-label">Email</label>
             <input type="text" class="form-control" id="emailFormRegister"
-            formControlName="email">
-            <div class="invalid-feedback">
-              campo inválido!
+            formControlName="email" [ngClass]="{inputError: hasError('email')}">
+            <div class="input-invalid" *ngIf="hasError('email')">
+              Email Inválido!
             </div>
           </div>
           <div class="col-md-12">
             <label for="senhaFormRegister" class="form-label">Senha</label>
             <input type="text" class="form-control" id="senhaFormRegister"
-            formControlName="password">
-            <div class="invalid-feedback">
-              campo inválido!
+            formControlName="password" [ngClass]="{inputError: hasError('password')}">
+            <div class="input-invalid" *ngIf="hasError('password')">
+              Senha Inválida!
             </div>
           </div>
           <div class="col-12">
-            <app-button minWidth="50px" height="40px" bc="rgb(0, 93, 199)" radius="5px" txtc="white">Log-In</app-button>
+            <app-button minWidth="50px" height="40px" bc="rgb(0, 93, 199)" radius="5px" txtc="white">
+              <span *ngIf="!loggingProcess">Log-In</span>
+              <div class="spinner-border text-light" role="status" *ngIf="loggingProcess">
+                <span class="sr-only"></span>
+              </div>
+            </app-button>
           </div>
         </form>
       </div>
