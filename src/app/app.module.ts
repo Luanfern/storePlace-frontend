@@ -13,8 +13,8 @@ import { MyCurrencyComponent } from './layout/my-currency/my-currency.component'
 import { MyAccountComponent } from './layout/my-account/my-account.component';
 import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpHeaderInterceptorService } from './shared/services/interceptors/http-header-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     MyCurrencyComponent,
-    MyAccountComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,11 @@ import { HttpClientModule } from '@angular/common/http';
     ShoppingKartModule,
     ComponentsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpHeaderInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

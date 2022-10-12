@@ -1,33 +1,30 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { AccountInterface } from '../../Interfaces/account-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyAccountService {
+  
+  public islogged = new Subject<boolean>();
+  public currentAccount = new Subject<AccountInterface>();
 
-  private islogged: boolean = false
-
-  private currentAccount: AccountInterface = {
-    name: '',
-    currency: 0
-  }
+  cA: AccountInterface =  {name: ''}
 
   constructor() { }
 
-  setAccount(account: AccountInterface){
-    this.currentAccount = account
+  setIslogged() {
+    this.islogged.next(true);
   }
 
-  get account(){
-    return this.currentAccount
+  setCurrentAccount(value?: AccountInterface) {
+     value ? this.cA = value : null
+    this.currentAccount.next(this.cA)
   }
 
-  setLogged(){
-    this.islogged = true
-  }
-
-  get logged(){
-    return this.islogged
+  async setTokenOnLocalStorage(token: string){
+    localStorage.setItem('token', token)
   }
 }

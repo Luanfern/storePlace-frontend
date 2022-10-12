@@ -11,7 +11,16 @@ export class AuthLoginService {
 
   constructor(private http: HttpClient) { }
 
-  authValidate(){}
+  authValidate(token: string): Observable<boolean> {
+    var validate = this.http.post<boolean>(
+      `${environment.URL_API}login/tokenAuth`,
+      {headers:{
+        'Content-Type': 'application/json',
+      },
+    },
+      );
+      return validate
+  }
 
   authLogin(acount: AccountInterface): Observable<string> {
     var login = this.http.post<string>(

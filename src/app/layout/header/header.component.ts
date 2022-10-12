@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AccountInterface } from 'src/app/shared/Interfaces/account-interface';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopping-kart.service';
@@ -10,26 +11,24 @@ import { MyAccountService } from 'src/app/shared/services/my-account/my-account.
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedHeader: boolean = false;
-  
   public isMenuCollapsed = true;
 
-  account: AccountInterface = {
-    name: ''
-  }
-
+  isLoggedHeader: boolean = false;
+  account: AccountInterface = {name: ''}
   shoppingKart: ProductInterface[] = []
+  subscriptionAccount!: Subscription;
+  subscriptionLogged!: Subscription;
 
   constructor(
-    private myAccount: MyAccountService,
+    public myAccount: MyAccountService,
     private myShoppingKart: ShoppingKartService
     ) { }
 
   ngOnInit(): void {
-    this.account = this.myAccount.account
+    this.subscriptionAccount = this.myAccount.currentAccount.subscribe((acc) => this.account = acc);
+    console.log(this.account)
+    this.subscriptionLogged = this.myAccount.islogged.subscribe((logged) => this.isLoggedHeader = logged);
+    console.log(this.isLoggedHeader)
     this.shoppingKart = this.myShoppingKart.myShoppingKart
-
-    this.isLoggedHeader = this.myAccount.logged
   }
-
 }
