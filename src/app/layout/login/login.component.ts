@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { catchError, delay, map, switchMap, take, tap } from 'rxjs';
 import { AccountInterface } from 'src/app/shared/Interfaces/account-interface';
 import { AuthLoginService } from 'src/app/shared/services/auth-login/auth-login.service';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authLogin: AuthLoginService,
     private myAccount: MyAccountService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,16 +47,20 @@ export class LoginComponent implements OnInit {
           tap(async (tk) => {
             await this.myAccount.setTokenOnLocalStorage(tk)
           }),
-          switchMap((token) => this.authLogin.authValidate(token)),
+          switchMap((token) => this.authLogin.authValidate()),
           catchError(async (err) => {
-            this.setErrorAlert(err.error.erro, 'danger'),
+            this.setErrorAlert(err.error.error, 'danger'),
               this.loggingProcess = false
+              console.log(err.error)
           }),
         ).subscribe((acc: any) => {
           this.loggingProcess = false
           console.log(acc)
-          this.myAccount.setIslogged()
-          this.myAccount.setCurrentAccount(acc)
+          if (acc.status) {
+            this.myAccount.setIslogged()
+            this.myAccount.setCurrentAccount(acc.acc)
+            this.route.navigate(['home'])
+          }
         }
         )
     } else if (this.formularioLogin.invalid && this.loggingProcess == true) {

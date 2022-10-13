@@ -15,6 +15,8 @@ import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpHeaderInterceptorService } from './shared/services/interceptors/http-header-interceptor.service';
+import { RouterModule } from '@angular/router';
+import { ModalComponentComponent } from './shared/services/modal/modal-component/modal-component.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HttpHeaderInterceptorService } from './shared/services/interceptors/htt
     LoginComponent,
     RegisterComponent,
     MyCurrencyComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { HttpHeaderInterceptorService } from './shared/services/interceptors/htt
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
 
     //APP MODULES
     HomeModule,
@@ -42,6 +46,7 @@ import { HttpHeaderInterceptorService } from './shared/services/interceptors/htt
     useClass: HttpHeaderInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }

@@ -13,7 +13,8 @@ export class HttpHeaderInterceptorService implements HttpInterceptor {
     var token = localStorage.getItem('token')
 
     var cloneRequest = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`)
+      headers: req.headers.set('Authorization', `Bearer ${token}`),
+      body: req.body
     })
     return next.handle(token ? cloneRequest : req)
   }

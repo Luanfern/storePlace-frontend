@@ -23,6 +23,7 @@ export class ShoppingKartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentCurrency = this.myAccount.cA.currency!
     this.subscriptionAccount = this.myAccount.currentAccount.subscribe(
       (acc) => {
         this.currentCurrency = acc.currency!;

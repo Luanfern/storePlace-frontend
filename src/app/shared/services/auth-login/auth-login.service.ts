@@ -11,10 +11,12 @@ export class AuthLoginService {
 
   constructor(private http: HttpClient) { }
 
-  authValidate(token: string): Observable<boolean> {
+  authValidate(): Observable<boolean> {
     var validate = this.http.post<boolean>(
       `${environment.URL_API}login/tokenAuth`,
-      {headers:{
+      {
+        headers:
+        {
         'Content-Type': 'application/json',
       },
     },
