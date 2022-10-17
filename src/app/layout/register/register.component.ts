@@ -32,32 +32,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.formularioRegister = this.formBuilder.group({
       name: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email, this.validEmail2], /**[this.verificarEmail.bind(this)] */],
+      email: [null, [Validators.required, Validators.email, this.validEmail2], [this.verificarEmail.bind(this)]],
       password: [null, [Validators.required]],
       telefone: [null, [Validators.required, Validators.minLength(10)]],
     })
-
-    /**
-     * 
-     *   this.inputVal('email')?.valueChanges.subscribe(
-        v => {
-          console.log(v.match(/\.['c']['o']['m']/g))
-          if (this.inputVal('email')?.valid && v.match(/\.['c']['o']['m']/g)) {
-            this.registerService.verifyEmail(v)
-              .pipe(
-                take(1),
-                catchError(async (e) => console.log(e))
-              ).subscribe(
-                next => {
-                  var obj: {status: boolean} = next as any
-                  console.log(next)
-                  this.verifyEmailStatus = !obj.status
-                }
-              )
-          }
-        }
-      )
-     */
   }
 
   validEmail2(campo: FormControl) {
@@ -73,13 +51,12 @@ export class RegisterComponent implements OnInit {
 
   async verificarEmail(campo: FormControl) {
     return this.registerService.verifyEmail(campo.value)
-      .pipe(map(v => v ? null : { freeEmail: true })).subscribe(
-        next => {
-          console.log(next?.freeEmail)
+      .pipe(
+        map(v => v ? null : { freeEmail: true }),
+        tap(v => {
           console.log(campo)
-          return next ? null : { freeEmail: true }
-        }
-      );
+        })
+        ).subscribe();
   }
 
   submitForm() {
