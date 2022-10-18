@@ -9,7 +9,7 @@
             <app-button minWidth="50px" height="35px"><i class="bi bi-search"></i></app-button>
         </div>
     </form>
-    <div class="listCategory">
+    <div class="listCategory" *ngIf="categories$ | async as categories; else loadingCategories">
         <p *ngIf="smallScreen">
             <button type="button" class="title" (click)="collapse.toggle()"
                 [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
@@ -18,7 +18,13 @@
         </p>
         <div *ngIf="!smallScreen">Categorias</div>
         <ul #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <li class="categories" *ngFor="let category of categories">{{ category.title }}</li>
+            <li class="categories" *ngFor="let category of categories" >{{ category.name }}</li>
         </ul>
     </div>
 </div>
+<ng-template #loadingCategories>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 150px;">
+        <div class="spinner-border" role="status"></div>
+        <div>Carregando Categorias</div>
+    </div>
+</ng-template>

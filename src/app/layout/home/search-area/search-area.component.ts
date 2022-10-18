@@ -1,4 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { map, Observable, take } from 'rxjs';
+import { CategoriesInterface } from 'src/app/shared/Interfaces/category-interface';
+import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-search-area',
@@ -9,17 +12,22 @@ export class SearchAreaComponent implements OnInit {
   public isCollapsed = true;
   smallScreen: boolean = false;
 
-  categories: any[] = [
-    {id: 1, title: 'Roupas'},
-    {id: 2, title: 'Eletro-domésticos'},
-    {id: 3, title: 'Comidas'},
-    {id: 4, title: 'Utensilios de Cozinha'},
-    {id: 5, title: 'Eletrônicos e Tecnologia'}
-  ]
+  categories$!: Observable<CategoriesInterface[]>
 
-  constructor() { }
+  /*
+    {id: 1, name: 'Roupas'},
+    {id: 2, name: 'Eletro-domésticos'},
+    {id: 3, name: 'Comidas'},
+    {id: 4, name: 'Utensilios de Cozinha'},
+    {id: 5, name: 'Eletrônicos e Tecnologia'}
+   */
+
+  constructor(
+    private categoriesService: CategoriesService
+  ) { }
 
   ngOnInit(): void {
+    this.categories$ = this.categoriesService.listCategories()
     if (window.innerWidth > 576) {
       this.isCollapsed = false
       this.smallScreen = false
