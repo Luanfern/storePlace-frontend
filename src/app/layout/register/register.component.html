@@ -20,11 +20,12 @@
         <div class="col-md-12">
           <label for="emailFormRegister" class="form-label">Email</label>
           <input type="text" class="form-control" id="emailFormRegister"
-          formControlName="email" [ngClass]="{inputError: hasError('email')}">
-          <div class="input-invalid" *ngIf="hasError('email')">
+          formControlName="email" [ngClass]="{inputError: hasError('email')}"
+          (focusout)="verificarEmail()">
+          <div class="input-invalid" *ngIf="formularioRegister.get('email')!.hasError('validEmail2')! || formularioRegister.get('email')!.hasError('email')!">
             campo inválido!
           </div>
-          <div class="input-invalid" *ngIf="formularioRegister.get('email')!.hasError('freeEmail')!"
+          <div class="input-invalid" *ngIf="!emailInUse && this.formularioRegister.get('email')?.touched"
           [ngStyle]="{'color': '#E67E22'}">
             Este e-mail já está em uso!
           </div>

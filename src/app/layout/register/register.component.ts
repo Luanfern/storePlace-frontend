@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = { msg: '', color: 'danger' }
   registerProcess: boolean = false
   si: any
+  emailInUse: boolean = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.formularioRegister = this.formBuilder.group({
       name: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email, this.validEmail2], [this.verificarEmail.bind(this)]],
+      email: [null, [Validators.required, Validators.email, this.validEmail2]],
       password: [null, [Validators.required]],
       telefone: [null, [Validators.required, Validators.minLength(10)]],
     })
@@ -49,14 +50,13 @@ export class RegisterComponent implements OnInit {
     return null
   }
 
-  async verificarEmail(campo: FormControl) {
-    return this.registerService.verifyEmail(campo.value)
+  async verificarEmail() {
+    this.registerService.verifyEmail(this.formularioRegister.get('email')?.value)
       .pipe(
-        map(v => v ? null : { freeEmail: true }),
-        tap(v => {
-          console.log(campo)
-        })
-        ).subscribe();
+        map(
+          async (v: any) => this.emailInUse = v
+        ),
+      ).subscribe()
   }
 
   submitForm() {
