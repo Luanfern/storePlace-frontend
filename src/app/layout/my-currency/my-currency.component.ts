@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { catchError, Subscription, take } from 'rxjs';
+import { catchError, isEmpty, Subscription, take } from 'rxjs';
 import { AccountInterface } from 'src/app/shared/Interfaces/account-interface';
+import { ModalServiceService } from 'src/app/shared/services/modal/modal-service.service';
 import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class MyCurrencyComponent implements OnInit {
   constructor(
     private myAccount: MyAccountService,
     private ngModal: NgbModal,
+    private modalService: ModalServiceService
   ) {
     this.modal = this.ngModal
   }
@@ -38,9 +40,9 @@ export class MyCurrencyComponent implements OnInit {
   }
 
   async addCurrency(changeValue: string): Promise<void> {
-    const value = Number.parseInt(changeValue)
+    const value = changeValue.length != 0 ? Number.parseInt(changeValue) : null
     console.log(value)
-    if (value != 0 || value != null || value != undefined || value == isNaN) {
+    if (value != 0 && value != null && value != undefined) {
       this.changeCurrency = true
       this.myAccount.changeCurrency(value)
         .pipe(
@@ -61,6 +63,10 @@ export class MyCurrencyComponent implements OnInit {
             }
           }
         )
+    } else {
+      this.closeModal()
+      this.modalService.changeModal('Carregamento de Valores', 'Você tentou carregar um valor vazio, insira um valor numérico para realizar o carregamento.')
+      var modalNotChange = setInterval(() => {this.modalService.closeModal(), clearInterval(modalNotChange)}, 3000)
     }
   }
 
