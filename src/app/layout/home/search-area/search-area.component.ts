@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { map, Observable, take } from 'rxjs';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CategoriesInterface } from 'src/app/shared/Interfaces/category-interface';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 
@@ -9,24 +10,24 @@ import { CategoriesService } from 'src/app/shared/services/categories/categories
   styleUrls: ['./search-area.component.scss']
 })
 export class SearchAreaComponent implements OnInit {
+
   public isCollapsed = true;
   smallScreen: boolean = false;
-
   categories$!: Observable<CategoriesInterface[]>
-
-  /*
-    {id: 1, name: 'Roupas'},
-    {id: 2, name: 'Eletro-domésticos'},
-    {id: 3, name: 'Comidas'},
-    {id: 4, name: 'Utensilios de Cozinha'},
-    {id: 5, name: 'Eletrônicos e Tecnologia'}
-   */
+  @Output() setSearch = new EventEmitter<{s: string, byCat: boolean}>()
+  serachForm!: FormGroup
 
   constructor(
+    private formBuilder: FormBuilder,
     private categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
+
+    this.serachForm = this.formBuilder.group({
+      search: [null],
+    })
+
     this.categories$ = this.categoriesService.listCategories()
     if (window.innerWidth > 576) {
       this.isCollapsed = false
@@ -40,14 +41,22 @@ export class SearchAreaComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth > 575 && this.smallScreen) {
-      this.smallScreen = false     
+      this.smallScreen = false
       this.isCollapsed = false
     }
     if (window.innerWidth <= 575 && !this.smallScreen) {
       this.smallScreen = true
       this.isCollapsed = true
     }
-}
+  }
 
+  submitSearch(byCategory: boolean = false, categoryNumber?: number){
+    if (byCategory) {
+      this.serachForm.get('search')?.setValue('')
+      this.setSearch.emit({s: categoryNumber!.toString(), byCat: true})
+    } else {
+      this.setSearch.emit({s: this.serachForm.get('search')?.value, byCat: false})
+    }
+  }
 
 }

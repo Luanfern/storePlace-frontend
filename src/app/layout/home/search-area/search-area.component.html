@@ -1,24 +1,28 @@
 <div class="searchArea">
     <div class="title">Menu de pesquisa</div>
     <hr>
-    <form class="row lineSearch">
+    <form class="row lineSearch" [formGroup]="serachForm" (ngSubmit)="submitSearch()">
         <div class="col-lg-9 col-md-8 col-sm-8 col-10">
-            <input class="form-control" type="text" placeholder="Search...">
+            <input class="form-control" type="text"
+            placeholder="Search..."
+            formControlName="search">
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-2 iconSearch">
             <app-button minWidth="50px" height="35px"><i class="bi bi-search"></i></app-button>
         </div>
     </form>
+
     <div class="listCategory" *ngIf="categories$ | async as categories; else loadingCategories">
         <p *ngIf="smallScreen">
-            <button type="button" class="title" (click)="collapse.toggle()"
-                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            <button type="button" class="title" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample">
                 Categorias <i class="bi bi-caret-down-fill"></i>
             </button>
         </p>
         <div *ngIf="!smallScreen">Categorias</div>
         <ul #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <li class="categories" *ngFor="let category of categories" >{{ category.name }}</li>
+            <li class="categories" *ngFor="let category of categories" (click)="submitSearch(true, category.id)">{{
+                category.name }}</li>
         </ul>
     </div>
 </div>
