@@ -1,3 +1,13 @@
-<div class="listProducts d-flex flex-wrap flex-row">
-    <app-product-card *ngFor="let product of productsReceive" [product] = "product" [forRemove]="toRemove"></app-product-card>
+<div class="listProducts d-flex flex-wrap flex-row" *ngIf="productsReceive.length > 0;else loading">
+    <app-product-card
+    *ngFor="let product of productsReceive"
+    [product]="product" [forRemove]="toRemove"
+    ></app-product-card>
 </div>
+
+<ng-template #loading>
+    <div class="loadingList">
+        <div class="spinner-border" role="status"></div>
+        <div>Carregando Produtos</div>
+    </div>
+</ng-template>
