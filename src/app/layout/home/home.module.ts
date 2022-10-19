@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './app-routing.module';
 import { SearchAreaComponent } from './search-area/search-area.component';
 import { ComponentsModule } from '../../shared/components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     HomeRoutingModule,
     ComponentsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeRoutingModule
