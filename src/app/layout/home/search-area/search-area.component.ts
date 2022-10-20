@@ -56,7 +56,7 @@ export class SearchAreaComponent implements OnInit {
       console.log(searchCatString)
       this.setSearch.emit({s: categoryNumber!.toString(), byCat: true, searchCatString: searchCatString})
     } else {
-      this.setSearch.emit({s: this.serachForm.get('search')?.value, byCat: false})
+      this.setSearch.emit({s: this.serachForm.get('search')?.value ?? '', byCat: false})
     }
   }
 
