@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { delay, map, pairwise, throttleTime } from 'rxjs';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 
@@ -10,11 +10,15 @@ import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 })
 export class ListaDeProdutosComponent implements OnInit, AfterViewInit{
 
+  @ViewChild('scrollProducts',{static: true}) scrollListProducts!: ElementRef<HTMLInputElement>;
+
   @Input('products') productsReceive: ProductInterface[] = []
   @Input() toRemove: boolean = false
 
   constructor() { }
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    console.log(this.scrollListProducts)
+  }
 
   ngOnInit(): void {}
 

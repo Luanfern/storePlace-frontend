@@ -1,4 +1,4 @@
-<div class="listProducts d-flex flex-wrap flex-row" *ngIf="productsReceive.length > 0;else loading">
+<div class="listProducts d-flex flex-wrap flex-row" *ngIf="productsReceive.length > 0;else loading" #scrollProducts>
     <app-product-card
     *ngFor="let product of productsReceive"
     [product]="product" [forRemove]="toRemove"
