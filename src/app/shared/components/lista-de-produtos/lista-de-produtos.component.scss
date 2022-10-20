@@ -1,8 +1,17 @@
 .listProducts{
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: calc(100vh - 100px);
     @media only screen and (max-width: 575px){
         display: flex;
         justify-content: center;
     }
+}
+
+.listProducts::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
 }
 
 .loadingList{

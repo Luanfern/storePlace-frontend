@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { ListaDeProdutosComponent } from './lista-de-produtos/lista-de-produtos.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductCardComponent
     ],
   imports: [
-    CommonModule
+    CommonModule,
+    ScrollingModule
   ],
    exports:[
     ButtonComponent,
