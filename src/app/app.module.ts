@@ -12,6 +12,11 @@ import { ComponentsModule } from './shared/components/components.module';
 import { MyCurrencyComponent } from './layout/my-currency/my-currency.component';
 import { MyAccountComponent } from './layout/my-account/my-account.component';
 import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpHeaderInterceptorService } from './shared/services/interceptors/http-header-interceptor.service';
+import { RouterModule } from '@angular/router';
+import { ModalComponentComponent } from './shared/services/modal/modal-component/modal-component.component';
 
 @NgModule({
   declarations: [
@@ -21,18 +26,27 @@ import { ShoppingKartModule } from './layout/shopping-kart/shopping-kart.module'
     RegisterComponent,
     MyCurrencyComponent,
     MyAccountComponent,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
 
     //APP MODULES
     HomeModule,
     ShoppingKartModule,
     ComponentsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpHeaderInterceptorService,
+    multi: true
+  }],
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }

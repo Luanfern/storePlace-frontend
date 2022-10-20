@@ -4,3 +4,15 @@
         justify-content: center;
     }
 }
+
+.loadingList{
+    height: calc(100vh - 66px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    i{
+        font-size: 40px;
+    }
+}

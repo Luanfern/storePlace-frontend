@@ -1,10 +1,19 @@
 <div class="home container">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-5 searchArea">
-            <app-search-area></app-search-area>
+            <app-search-area (setSearch)="setSearch($event)"></app-search-area>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-7 listArea">
-            <app-lista-de-produtos [products]="products" [toRemove]="false"></app-lista-de-produtos>
+            <div *ngIf="search != '' " class="searchShow">Pesquisado Por: <strong>"{{ search }}"</strong></div>
+            <div *ngIf="showProducts; else noProducts" >
+                <app-lista-de-produtos [products]="products" [toRemove]="false"></app-lista-de-produtos>
+            </div>
         </div>
     </div>
 </div>
+
+<ng-template #noProducts>
+    <div class="noProducts">
+        <div>Não foi possível carregar a lista de produtos.</div>
+    </div>
+</ng-template>

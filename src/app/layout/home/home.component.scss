@@ -7,5 +7,21 @@
     .listArea{
         border-left: 1px solid rgba(128, 128, 128, 0.342);
         padding:0 10px;
+        .searchShow{
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    }
+}
+
+.noProducts{
+    height: calc(100vh - 66px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    i{
+        font-size: 40px;
     }
 }

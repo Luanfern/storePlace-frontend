@@ -1,7 +1,13 @@
 <div class="myCurrency container">
     <div class="currentCurrency">
-        <b [ngStyle]="{'font-size': '25px'}">Seu Saldo: </b>
-        <div class="currency">{{ account.currency | currency: 'BRL' }}</div>
+        <div class="current">
+            <b [ngStyle]="{'font-size': '25px'}">Seu Saldo: </b>
+            <div class="currency">{{ account.currency | currency: 'BRL' }}</div>
+        </div>
+        <button class="moreCurrent" (click)="changeCurrencyModal(modalCurrency)">
+            <i class="bi bi-plus-circle-dotted"></i>
+            <div>Adicionar Saldo</div>
+        </button>
     </div>
     <div class="title">EXTRATO</div>
     <div class="myExtract">
@@ -13,3 +19,24 @@
         </ul>
     </div>
 </div>
+
+<ng-template #modalCurrency>
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title">Carregar Carteira &nbsp;&nbsp; <i class="bi bi-wallet2"></i></h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="spinner-border text-success" role="status" *ngIf="changeCurrency"></div>
+                <br>
+                <div class="d-flex flex-row justify-content-center align-items-center">
+                    Valor a ser carregado: &nbsp;&nbsp; R$<input style="width: 100px;" type="number" #currency placeholder="0.00" [readonly]="changeCurrency">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="continueButton" (click)="addCurrency(currency.value)">Carregar</button>
+        </div>
+    </div>
+</ng-template>
