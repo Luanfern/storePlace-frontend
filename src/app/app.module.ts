@@ -17,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpHeaderInterceptorService } from './shared/services/interceptors/http-header-interceptor.service';
 import { RouterModule } from '@angular/router';
 import { ModalComponentComponent } from './shared/services/modal/modal-component/modal-component.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ModalComponentComponent } from './shared/services/modal/modal-component
     //APP MODULES
     HomeModule,
     ShoppingKartModule,
-    ComponentsModule
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
