@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   products: ProductInterface[] = []
   productsSubscriptions: Subscription[] = []
   search: string = ''
+  showProducts: boolean = true
 
   constructor(
     private productService: ProductsService
@@ -24,32 +25,45 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsAsync(search: string){
+    this.products = []
     this.productsSubscriptions[1] = this.productService.getProducts(search).
     pipe(
       catchError(async (v) => {console.log(v)}),
       map((listProducts: any) => {
-        this.products = listProducts
+        this.products = listProducts.products
+        if(listProducts.count == 0){
+          this.showProducts = false
+        } else {
+          this.showProducts = true
+        }
       })
     )
     .subscribe()
   }
 
   getProductsByCatAsync(search: string){
+    this.products = []
     this.productsSubscriptions[2] = this.productService.getProductsByCat(search).
     pipe(
       catchError(async (v) => {console.log(v)}),
       map((listProducts: any) => {
-        this.products = listProducts
+        this.products = listProducts.products
+        if(listProducts.count == 0){
+          this.showProducts = false
+        } else {
+          this.showProducts = true
+        }
       })
     )
     .subscribe()
   }
 
-  setSearch(search: {s: string, byCat: boolean}){
-    this.search = search.s
+  setSearch(search: {s: string, byCat: boolean, searchCatString?: string}){
     if (search.byCat) {
+      this.search = search.searchCatString!
       this.getProductsByCatAsync(search.s)
     } else {
+      this.search = search.s
       this.getProductsAsync(search.s) 
     }
   }

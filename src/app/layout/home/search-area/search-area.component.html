@@ -21,7 +21,8 @@
         </p>
         <div *ngIf="!smallScreen">Categorias</div>
         <ul #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <li class="categories" *ngFor="let category of categories" (click)="submitSearch(true, category.id)">{{
+            <li class="categories" (click)="submitSearch()">Todos</li>
+            <li class="categories" *ngFor="let category of categories" (click)="submitSearch(true, category.id, category.name )">{{
                 category.name }}</li>
         </ul>
     </div>

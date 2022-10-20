@@ -14,7 +14,7 @@ export class SearchAreaComponent implements OnInit {
   public isCollapsed = true;
   smallScreen: boolean = false;
   categories$!: Observable<CategoriesInterface[]>
-  @Output() setSearch = new EventEmitter<{s: string, byCat: boolean}>()
+  @Output() setSearch = new EventEmitter<{s: string, byCat: boolean, searchCatString?: string}>()
   serachForm!: FormGroup
 
   constructor(
@@ -50,10 +50,11 @@ export class SearchAreaComponent implements OnInit {
     }
   }
 
-  submitSearch(byCategory: boolean = false, categoryNumber?: number){
+  submitSearch(byCategory: boolean = false, categoryNumber?: number, searchCatString?: string){
     if (byCategory) {
       this.serachForm.get('search')?.setValue('')
-      this.setSearch.emit({s: categoryNumber!.toString(), byCat: true})
+      console.log(searchCatString)
+      this.setSearch.emit({s: categoryNumber!.toString(), byCat: true, searchCatString: searchCatString})
     } else {
       this.setSearch.emit({s: this.serachForm.get('search')?.value, byCat: false})
     }
