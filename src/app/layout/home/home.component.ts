@@ -9,67 +9,80 @@ import { ProductsService } from 'src/app/shared/services/products/products.servi
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+
   existProducts: boolean | undefined
   products: ProductInterface[] = []
+  countProducts: number = 0
   productsSubscriptions: Subscription[] = []
   search: string = ''
   showProducts: boolean = true
+  searchByCatNumber: string = ''
 
   constructor(
     private productService: ProductsService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-      this.getProductsAsync(this.search)
+    this.getProductsAsync(this.search)
   }
 
-  getProductsAsync(search: string){
+  getProductsAsync(search: string, paginationInitial: number = 0) {
+    this.searchByCatNumber = ''
+    this.productService.getFromBackEnd = true
+    this.productsSubscriptions[1] = this.productService.getProducts(search, paginationInitial).
+      pipe(
+        catchError(async (v) => { console.log(v) }),
+        map((listProducts: any) => {
+          this.setCountandProducts(listProducts)
+        })
+      )
+      .subscribe()
+  }
+
+  getProductsByCatAsync(search: string, paginationInitial: number = 0) {
+    this.productService.getFromBackEnd = true
+    this.productsSubscriptions[2] = this.productService.getProductsByCat(search, paginationInitial).
+      pipe(
+        catchError(async (v) => { console.log(v) }),
+        map((listProducts: any) => {
+          this.setCountandProducts(listProducts)
+        })
+      )
+      .subscribe()
+  }
+
+  setSearch(search: { s: string, byCat: boolean, searchCatString?: string }) {
     this.products = []
-    this.productsSubscriptions[1] = this.productService.getProducts(search).
-    pipe(
-      catchError(async (v) => {console.log(v)}),
-      map((listProducts: any) => {
-        this.products = listProducts.products
-        if(listProducts.count == 0){
-          this.showProducts = false
-        } else {
-          this.showProducts = true
-        }
-      })
-    )
-    .subscribe()
-  }
-
-  getProductsByCatAsync(search: string){
-    this.products = []
-    this.productsSubscriptions[2] = this.productService.getProductsByCat(search).
-    pipe(
-      catchError(async (v) => {console.log(v)}),
-      map((listProducts: any) => {
-        this.products = listProducts.products
-        if(listProducts.count == 0){
-          this.showProducts = false
-        } else {
-          this.showProducts = true
-        }
-      })
-    )
-    .subscribe()
-  }
-
-  setSearch(search: {s: string, byCat: boolean, searchCatString?: string}){
     if (search.byCat) {
+      this.searchByCatNumber = search.s
       this.search = search.searchCatString!
       this.getProductsByCatAsync(search.s)
     } else {
       this.search = search.s
-      this.getProductsAsync(search.s) 
+      this.getProductsAsync(search.s)
     }
   }
 
-  loadMore(){
-    this.getProductsAsync(this.search)
+  loadMore(ret: any) {
+    if (ret.count > this.products.length) {
+      console.log('loadMore', ret)
+      if (this.searchByCatNumber != '') {
+        this.getProductsByCatAsync(this.searchByCatNumber, this.products.length)
+      }else {
+        this.getProductsAsync(this.search, this.products.length)
+      }
+    }
+  }
+
+  setCountandProducts(listProducts: any) {
+    this.products.push(...listProducts.products)
+    this.countProducts = listProducts.count
+    this.productService.getFromBackEnd = false
+    if (listProducts.count == 0) {
+      this.showProducts = false
+    } else {
+      this.showProducts = true
+    }
   }
 
   ngOnDestroy(): void {

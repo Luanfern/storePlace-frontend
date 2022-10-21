@@ -10,19 +10,20 @@ import { ProductInterface } from '../../Interfaces/product-interface';
 export class ProductsService {
 
   paginationControll: number = 0
+  getFromBackEnd: boolean = false
 
   constructor(
     private http: HttpClient
     ) { }
 
-    getProducts(search: string = ''):Observable<ProductInterface[]> {
+    getProducts(search: string = '', paginationInitial: number = 0):Observable<ProductInterface[]> {
       console.log(this.paginationControll)
       const url = `${environment.URL_API}products/${search}`
       console.log(url)
       return this.http.post<ProductInterface[]>(url,
         {
           "pagination": [
-            0, 12
+            paginationInitial, 12
           ]
         },
       {headers:{
@@ -31,14 +32,14 @@ export class ProductsService {
       )
     }
 
-    getProductsByCat(search: string = ''):Observable<ProductInterface[]> {
+    getProductsByCat(search: string = '', paginationInitial: number = 0):Observable<ProductInterface[]> {
       console.log(this.paginationControll)
       const url = `${environment.URL_API}products/cat/${search}`
       console.log(url)
       return this.http.post<ProductInterface[]>(url,
         {
           "pagination": [
-            0, 12
+            paginationInitial, 12
           ]
         },
       {headers:{

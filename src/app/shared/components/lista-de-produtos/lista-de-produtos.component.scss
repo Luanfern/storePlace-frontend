@@ -25,3 +25,33 @@
         font-size: 40px;
     }
 }
+
+.noProducts{
+    margin: 10px 0;
+    font-size: 20px;
+    width: 400px;
+    @media only screen and (max-width: 575px){
+        display: flex;
+        justify-content: center;
+        width: 300px;
+    }
+}
+
+.loadingMore{
+    z-index: 10;
+    position: absolute;
+    height: 75px;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.65);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 22px;
+    i{
+        font-size: 40px;
+    }
+}

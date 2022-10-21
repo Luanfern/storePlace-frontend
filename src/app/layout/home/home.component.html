@@ -6,7 +6,7 @@
         <div class="col-lg-9 col-md-8 col-sm-7 listArea">
             <div *ngIf="search != '' " class="searchShow">Pesquisado Por: <strong>"{{ search }}"</strong></div>
             <div *ngIf="showProducts; else noProducts" >
-                <app-lista-de-produtos [products]="products" [toRemove]="false"></app-lista-de-produtos>
+                <app-lista-de-produtos [products]="products" [toRemove]="false" [count]="countProducts" (lm)="loadMore($event)"></app-lista-de-produtos>
             </div>
         </div>
     </div>
