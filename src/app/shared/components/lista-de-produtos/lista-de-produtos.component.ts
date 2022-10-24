@@ -25,14 +25,16 @@ export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
 
   constructor(private productsService: ProductsService) { }
   ngAfterViewInit(): void {
-    this.verifyScroll()
+      this.verifyScroll()
   }
+
   ngOnInit(): void { }
 
   verifyScroll() {
     this.scrollController = setInterval(() => {
-      let currentScroll = this.scrollListProducts!.nativeElement.scrollTop
-      let height = (this.scrollListProducts!.nativeElement.scrollHeight - this.scrollListProducts.nativeElement.clientHeight + this.fakeHeight)
+      let currentScroll = window.innerWidth > 576 ? this.scrollListProducts!.nativeElement.scrollTop : window.scrollY
+      let height = window.innerWidth > 576 ? (this.scrollListProducts!.nativeElement.scrollHeight - this.scrollListProducts.nativeElement.clientHeight + this.fakeHeight): (document.body.scrollHeight - window.screen.height + this.fakeHeight)
+      
       this.loadMore = this.productsService.getFromBackEnd
       if(this.loadMore) this.fakeHeight = 0
 
@@ -56,5 +58,4 @@ export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
       }
     }, 100)
   }
-
 }
