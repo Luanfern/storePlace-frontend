@@ -1,24 +1,26 @@
 <div class="product container">
+    <div class="areaTitle">
+        <div class="title">
+            {{ product.name }}
+        </div>
+    </div>
     <div class="image">
-         <!--img [src]="https://a-static.mlcdn.com.br/800x560/sabao-em-po-omo-multiacao-1kg/magazineluiza/220993100/c22aa7ae888816de7442afa6f9d14f8d.jpg" [alt]="OMO1k"-->
+        <img [src]="product.image" [alt]="product.image">
     </div>
     <div class="infoArea">
-        <div class="areaTitle">
-            <div class="title">
-                omo 1kg
-            </div>
-        </div>
         <div class="bottomArea">
-            <div class="price">3.95</div> <!--{{ product.price | currency: 'BRL' }}-->
-            <button class="cartButton"
-            (click)="clickActionButton('product')"
-            [ngClass]="{addCart: !forRemove, 
+            <div class="price">{{ product.price | currency: 'BRL' }}</div>
+            <button class="cartButton" (click)="clickActionButton('product')" [ngClass]="{addCart: !forRemove, 
                 removeCart: forRemove}">
-                <i class="bi"
-                [ngClass]="{'bi-cart-plus': !forRemove,
+                <i class="bi" [ngClass]="{'bi-cart-plus': !forRemove,
                     'bi-cart-dash': forRemove}">
-            </i>
-        </button>
+                </i>
+            </button>
+        </div>
+        <div class="descArea">
+            <div class="desc">
+                {{ product.description }}
+            </div>
         </div>
     </div>
 </div>

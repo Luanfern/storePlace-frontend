@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 
 @Component({
@@ -19,9 +21,16 @@ export class ProductViewComponent implements OnInit {
     image: ''
   }
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.data
+    .pipe(take(1))
+    .subscribe((p: any) => {
+      this.product = p.product
+    })
   }
 
   clickActionButton(p: string/* ProductInterface */): void {

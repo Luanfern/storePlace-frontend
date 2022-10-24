@@ -47,4 +47,9 @@ export class ProductsService {
       }}
       )
     }
+
+    getProduct(search: number = 0):Observable<ProductInterface> {
+      const url = `${environment.URL_API}product/${search}`
+      return this.http.get<ProductInterface>(url)
+    }
 }

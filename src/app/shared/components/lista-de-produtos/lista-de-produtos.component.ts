@@ -42,7 +42,7 @@ export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
         getFromBacktpBool: this.productsService.getFromBackEnd,
         heightMath: (height - currentScroll)
       }
-      console.table(statusvar)
+      //console.table(statusvar)
 
       if (this.productsReceive.length < this.countTotalProducts) {
         if (height - currentScroll < 220) {
