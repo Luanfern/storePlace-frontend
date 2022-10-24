@@ -11,6 +11,7 @@ import { ProductsService } from '../../services/products/products.service';
 export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
 
   @ViewChild('scrollProducts') scrollListProducts!: ElementRef<HTMLDivElement>;
+  @Input('searchBy') search: string = ''
   @Input('products') productsReceive: ProductInterface[] = []
   @Input('count') countTotalProducts: number = 0
   @Input() toRemove: boolean = false

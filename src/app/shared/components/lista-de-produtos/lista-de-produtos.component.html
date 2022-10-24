@@ -1,4 +1,8 @@
-<div class="listProducts d-flex flex-wrap flex-row" *ngIf="productsReceive.length > 0;else loading" #scrollProducts>
+<div *ngIf="search != '' " class="searchShow">Pesquisando Por: <strong>"{{ search }}"</strong></div>
+<div class="listProducts d-flex flex-wrap flex-row"
+*ngIf="productsReceive.length > 0;else loading"
+#scrollProducts
+[ngStyle]="{height: search != '' ? 'calc(100vh - 108px)' : 'calc(100vh - 80px)'}">
     <app-product-card
     *ngFor="let product of productsReceive"
     [product]="product" [forRemove]="toRemove"
