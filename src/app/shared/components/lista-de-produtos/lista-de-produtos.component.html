@@ -1,18 +1,13 @@
 <div *ngIf="search != '' " class="searchShow">Pesquisando Por: <strong>"{{ search }}"</strong></div>
-<div class="listProducts d-flex flex-wrap flex-row"
-*ngIf="productsReceive.length > 0;else loading"
-#scrollProducts
-[ngStyle]="{height: search != '' ? 'calc(100vh - 108px)' : 'calc(100vh - 80px)'}">
-    <app-product-card
-    *ngFor="let product of productsReceive"
-    [product]="product" [forRemove]="toRemove"
-    ></app-product-card>
+<div class="listProducts d-flex flex-wrap flex-row" *ngIf="productsReceive.length > 0;else loading" #scrollProducts
+    [ngStyle]="{height: search != '' ? 'calc(100vh - 108px)' : 'calc(100vh - 80px)'}">
+    <app-product-card *ngFor="let product of productsReceive" [product]="product" [forRemove]="toRemove"></app-product-card>
     <div class="d-flex flex-wrap flex-row" *ngIf="productsReceive.length == countTotalProducts">
         <div class="noProducts">
             <div>Sem mais produtos para carregar</div>
         </div>
     </div>
-    <div class="d-flex flex-wrap flex-row"  *ngIf="loadMore">
+    <div class="d-flex flex-wrap flex-row" *ngIf="loadMore">
         <div class="loadingMore">
             <div class="spinner-border" role="status"></div>
             <div>Carregando Mais...</div>
