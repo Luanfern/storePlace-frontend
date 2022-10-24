@@ -1,59 +1,44 @@
 .product {
     width: 100%;
     padding-top: 80px;
-    height: calc(100% - 84px);
     background-color: white;
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     .image {
-        width: 100%;
-        @media only screen and (min-width: 768px) {
-            height: 350px;
-        }
-        @media only screen and (max-width: 767px) {
-            height: 300px;
-        }
+        max-height: 350px;
         display: flex;
         justify-content: center;
-        overflow: hidden;
         padding: 1px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.10);
-        background-color: rgba(0, 0, 0, 0.05);
-
         img {
             z-index: 1;
-            height: calc(100% - 4px);
+            width: 100%;
+            object-fit: contain;
             margin: 2px 0;
-        }
-
-        .moreAbout {
-            opacity: 0;
-            position: absolute;
-            z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 150px;
-            height: 95px;
-            color: #000;
-            font-size: 25px;
-
         }
     }
 
     .infoArea {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px 5px;
         .areaTitle {
             width: 100%;
-            height: 45px;
             display: flex;
             align-items: center;
-
             .title {
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                padding: 0px 10px;
-                font-size: 13px;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .descArea{
+            margin: 5px 0;
+            width: 100%;
+            .desc{
+                font-size: 14px;
             }
         }
 
@@ -63,19 +48,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 10px;
 
             .price {
-                padding: 0 2px;
-                font-size: 15px;
+                font-size: 20px;
             }
 
             .cartButton {
                 height: 35px;
-                width: 35px;
+                line-height: 35px;
+                width: 120px;
                 border: none;
                 font-size: 20px;
                 border-radius: 8px;
+                display: flex;
+                justify-content: space-evenly;
+                .string{
+                    font-size: 16px;
+                }
             }
 
             .addCart {
@@ -88,22 +77,4 @@
             }
         }
     }
-
-    &:hover {
-
-        .image {
-            background-color: rgba(0, 0, 0, 0.25);
-
-            img {
-                opacity: 0.3;
-            }
-
-            .moreAbout {
-                opacity: 1;
-            }
-        }
-    }
-
 }
-
-//height: calc(100vh - 66px);
