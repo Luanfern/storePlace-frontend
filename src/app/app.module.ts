@@ -18,6 +18,7 @@ import { HttpHeaderInterceptorService } from './shared/services/interceptors/htt
 import { RouterModule } from '@angular/router';
 import { ModalComponentComponent } from './shared/services/modal/modal-component/modal-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductViewComponent } from './layout/product-view/product-view.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     MyCurrencyComponent,
     MyAccountComponent,
-    ModalComponentComponent
+    ModalComponentComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,

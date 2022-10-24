@@ -1,18 +1,17 @@
-<div class="product">
-    <div class="image" (click)="openProduct(product.code)">
-        <div class="moreAbout"><i class="bi bi-hand-index"></i> para <i class="bi bi-eye-fill"></i></div>
-        <img [src]="product.image" [alt]="product.name">
+<div class="product container">
+    <div class="image">
+         <!--img [src]="https://a-static.mlcdn.com.br/800x560/sabao-em-po-omo-multiacao-1kg/magazineluiza/220993100/c22aa7ae888816de7442afa6f9d14f8d.jpg" [alt]="OMO1k"-->
     </div>
     <div class="infoArea">
         <div class="areaTitle">
             <div class="title">
-                {{ product.name }}
+                omo 1kg
             </div>
         </div>
         <div class="bottomArea">
-            <div class="price">{{ product.price | currency: 'BRL' }}</div>
+            <div class="price">3.95</div> <!--{{ product.price | currency: 'BRL' }}-->
             <button class="cartButton"
-            (click)="clickActionButton(product)"
+            (click)="clickActionButton('product')"
             [ngClass]="{addCart: !forRemove, 
                 removeCart: forRemove}">
                 <i class="bi"

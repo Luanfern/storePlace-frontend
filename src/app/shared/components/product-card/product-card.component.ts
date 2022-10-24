@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopping-kart.service';
 
@@ -21,10 +22,15 @@ export class ProductCardComponent implements OnInit {
   }
 
   constructor(
-    private myShoppingKart: ShoppingKartService
+    private myShoppingKart: ShoppingKartService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
+  }
+
+  openProduct(productCode: number){
+    this.route.navigate(['product', productCode])
   }
 
   clickActionButton(p: ProductInterface): void {

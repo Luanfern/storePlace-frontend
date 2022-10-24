@@ -1,0 +1,109 @@
+.product {
+    width: 100%;
+    padding-top: 80px;
+    height: calc(100% - 84px);
+    background-color: white;
+    position: relative;
+
+    .image {
+        width: 100%;
+        @media only screen and (min-width: 768px) {
+            height: 350px;
+        }
+        @media only screen and (max-width: 767px) {
+            height: 300px;
+        }
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 1px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+        background-color: rgba(0, 0, 0, 0.05);
+
+        img {
+            z-index: 1;
+            height: calc(100% - 4px);
+            margin: 2px 0;
+        }
+
+        .moreAbout {
+            opacity: 0;
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 150px;
+            height: 95px;
+            color: #000;
+            font-size: 25px;
+
+        }
+    }
+
+    .infoArea {
+        .areaTitle {
+            width: 100%;
+            height: 45px;
+            display: flex;
+            align-items: center;
+
+            .title {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                padding: 0px 10px;
+                font-size: 13px;
+            }
+        }
+
+        .bottomArea {
+            width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+
+            .price {
+                padding: 0 2px;
+                font-size: 15px;
+            }
+
+            .cartButton {
+                height: 35px;
+                width: 35px;
+                border: none;
+                font-size: 20px;
+                border-radius: 8px;
+            }
+
+            .addCart {
+                background-color: #FFDE59;
+            }
+
+            .removeCart {
+                background-color: #ff5959;
+                color: white;
+            }
+        }
+    }
+
+    &:hover {
+
+        .image {
+            background-color: rgba(0, 0, 0, 0.25);
+
+            img {
+                opacity: 0.3;
+            }
+
+            .moreAbout {
+                opacity: 1;
+            }
+        }
+    }
+
+}
+
+//height: calc(100vh - 66px);
