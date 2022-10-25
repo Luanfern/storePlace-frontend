@@ -10,7 +10,7 @@ import { ProductsService } from '../../services/products/products.service';
 })
 export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('scrollProducts') scrollListProducts!: ElementRef<HTMLDivElement>;
+  @ViewChild('scrollProducts') scrollListProducts!: ElementRef;
   @Input('searchBy') search: string = ''
   @Input('products') productsReceive: ProductInterface[] = []
   @Input('count') countTotalProducts: number = 0
@@ -25,7 +25,7 @@ export class ListaDeProdutosComponent implements OnInit, AfterViewInit {
 
   constructor(private productsService: ProductsService) { }
   ngAfterViewInit(): void {
-      this.verifyScroll()
+      if (this.productsReceive.length > 0)this.verifyScroll()
   }
 
   ngOnInit(): void { }
