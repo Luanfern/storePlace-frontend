@@ -16,7 +16,11 @@ export class ProductGuardGuard implements Resolve<ProductInterface> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): ProductInterface | Observable<ProductInterface> | Promise<ProductInterface> {
-    return this.product.getProduct(route.params['code'])
+    try {
+      return this.product.getProduct(route.params['code'])
+    } catch (error) {
+      throw error
+    }
   }
   
 }

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ProductInterface } from '../../Interfaces/product-interface';
 
 @Injectable({
@@ -8,7 +11,7 @@ export class ShoppingKartService {
 
   myShoppingKart: ProductInterface[] = []
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getmyShoppingKart(): ProductInterface[] {
     return this.myShoppingKart
@@ -22,5 +25,15 @@ export class ShoppingKartService {
     const index = this.myShoppingKart.indexOf(p)
     this.myShoppingKart.splice(index, 1)
     console.log(index)
+  }
+
+  getKartList():Observable<ProductInterface[]> {
+    const url = `${environment.URL_API}shoppingKart/products`
+    console.log(url)
+    return this.http.post<ProductInterface[]>(url,
+    {headers:{
+      'Content-Type': 'application/json',
+    }}
+    )
   }
 }
