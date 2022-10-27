@@ -5,7 +5,7 @@ import { MyAccountComponent } from './layout/my-account/my-account.component';
 import { MyCurrencyComponent } from './layout/my-currency/my-currency.component';
 import { ProductViewComponent } from './layout/product-view/product-view.component';
 import { RegisterComponent } from './layout/register/register.component';
-import { ProductGuardGuard } from './shared/guards/product-guard.guard';
+import { ProductGuardGuard } from './shared/guards/product-guards/product-guard.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
