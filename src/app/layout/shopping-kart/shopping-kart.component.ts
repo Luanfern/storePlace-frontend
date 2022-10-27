@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
 import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';
@@ -19,19 +21,20 @@ export class ShoppingKartComponent implements OnInit {
 
   constructor(
     private myAccount: MyAccountService,
-    private myShoppingKart: ShoppingKartService
+    private myShoppingKart: ShoppingKartService,
   ) { }
 
   ngOnInit(): void {
+    this.kartProducts = this.myShoppingKart.myShoppingKart
     this.currentCurrency = this.myAccount.cA.currency!
     this.subscriptionAccount = this.myAccount.currentAccount.subscribe(
       (acc) => {
         this.currentCurrency = acc.currency!;
       }
     );
-    console.log(this.currentCurrency)
+    //console.log(this.currentCurrency)
     this.kartProducts = this.myShoppingKart.getmyShoppingKart()
-    console.log(this.kartProducts)
+    //console.log(this.kartProducts)
   }
 
   ngOnDestroy() {

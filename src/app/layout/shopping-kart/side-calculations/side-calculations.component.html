@@ -6,7 +6,7 @@
             <li class="calculation" *ngFor="let product of kartCalc"> <div class="areaTitle"><p class="title">{{ product.name }}</p></div> <b class="price">{{ product.price | currency: 'BRL' }}</b></li>
         </ul>
         <div class="total">Total: <div>{{ total | currency: 'BRL' }}</div></div>
-        <button class="continueButton" [disabled]="disable"> Continuar Compra </button>
+        <button class="continueButton" [disabled]="disable" (click)="comprar()"> Continuar Compra </button>
         <p class="messageErrorKeepBuying">{{ keepBuying }}</p>
     </div>
 </div>

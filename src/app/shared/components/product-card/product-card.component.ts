@@ -13,6 +13,7 @@ export class ProductCardComponent implements OnInit {
   @Input() forRemove: boolean = false;
 
   @Input() product: ProductInterface = {
+    id: 0,
     name: '',
     code: 0,
     price: 0,

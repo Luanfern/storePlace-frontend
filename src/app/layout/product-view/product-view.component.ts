@@ -13,6 +13,7 @@ export class ProductViewComponent implements OnInit {
   forRemove: boolean = false
 
   product: ProductInterface = {
+    id: 0,
     name: '',
     code: 0,
     price: 0,

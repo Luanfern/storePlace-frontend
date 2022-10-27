@@ -11,6 +11,7 @@ export class ModalServiceService {
   public contentModal = new Subject<string>();
   modal!: NgbModal
   title: string = ''
+  color: string = 'white'
 
   constructor(
     private ngModal: NgbModal,
@@ -31,7 +32,8 @@ export class ModalServiceService {
     this.modal.dismissAll()
   }
 
-  changeContentModal(message: string){
+  changeContentModal(message: string, color: string){
+    this.color = color
     this.contentModal.next(message)
   }
 }

@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, delay, take } from 'rxjs';
+import { catchError, take } from 'rxjs';
 import { AuthLoginService } from './shared/services/auth-login/auth-login.service';
 import { MyAccountService } from './shared/services/my-account/my-account.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalServiceService } from './shared/services/modal/modal-service.service';
+import { ShoppingKartService } from './shared/services/shopping-kart/shopping-kart.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
     private authLogin: AuthLoginService,
     private myAccount: MyAccountService,
     private route: Router,
-    private modalService: ModalServiceService
+    private modalService: ModalServiceService,
+    private myShoppingKart: ShoppingKartService
   ) { }
 
   ngOnInit(): void {
@@ -43,17 +44,29 @@ export class AppComponent implements OnInit {
             this.myAccount.setIslogged()
             this.myAccount.setCurrentAccount(acc.acc)
             this.modalService.closeModal()
+            this.getKartList()
           } else {
             if (acc.status == false) {
-              this.modalService.changeContentModal(acc.error)
+              this.modalService.changeContentModal(acc.error, 'white')
               this.route.navigate(['login'])
             } else {
               this.myAccount.setIslogged()
               this.myAccount.setCurrentAccount(acc.acc)
+              this.getKartList()
             }
           }
         }
         )
     }
+  }
+  getKartList() {
+    this.myShoppingKart.getKartList()
+      .pipe(take(1))
+      .subscribe((p: any) => {
+        console.log(p.products)
+        if (p.status == true) {
+          this.myShoppingKart.myShoppingKart.push(...p.products)
+        }
+      })
   }
 }
