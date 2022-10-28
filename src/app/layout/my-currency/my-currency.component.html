@@ -9,14 +9,20 @@
             <div>Adicionar Saldo</div>
         </button>
     </div>
-    <div class="title">EXTRATO</div>
-    <div class="myExtract">
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
+    <div class="title">PEDIDOS</div>
+    <div class="myExtract" *ngIf="extract$ | async as extracts; else carregandoExtrato">
+        <table class="extractTable">
+            <tr>
+              <th>Valor Total</th>
+              <th>Quantidade de Produtos</th>
+              <th>Data</th>
+            </tr>
+            <tr class="extractItem" *ngFor="let ex of extracts">
+              <td class="numberAlign">{{ ex.total | currency }}</td>
+              <td>{{ ex.listProducts.length }}</td>
+              <td>{{ ex.date | date }}</td>
+            </tr>
+          </table>
     </div>
 </div>
 
@@ -39,4 +45,9 @@
             <button class="continueButton" (click)="addCurrency(currency.value)">Carregar</button>
         </div>
     </div>
+</ng-template>
+
+<ng-template #carregandoExtrato>
+    <div class="spinner-border" role="status"></div>
+    <div>Carregando Pedidos</div>
 </ng-template>

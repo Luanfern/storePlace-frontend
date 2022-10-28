@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { catchError, isEmpty, Subscription, take } from 'rxjs';
+import { catchError, Observable, Subscription, take } from 'rxjs';
 import { AccountInterface } from 'src/app/shared/Interfaces/account-interface';
+import { IExtract } from 'src/app/shared/Interfaces/extract-interface';
+import { ExtractService } from 'src/app/shared/services/extract/extract.service';
 import { ModalServiceService } from 'src/app/shared/services/modal/modal-service.service';
 import { MyAccountService } from 'src/app/shared/services/my-account/my-account.service';
 
@@ -17,15 +19,19 @@ export class MyCurrencyComponent implements OnInit {
   modal!: NgbModal
   changeCurrency: boolean = false
 
+  extract$!: Observable<IExtract[]>
+
   constructor(
     private myAccount: MyAccountService,
     private ngModal: NgbModal,
-    private modalService: ModalServiceService
+    private modalService: ModalServiceService,
+    private extract: ExtractService
   ) {
     this.modal = this.ngModal
   }
 
   ngOnInit(): void {
+    this.extract$ = this.extract.getExtracts()
     this.account = this.myAccount.cA
     this.subscriptionAccount = this.myAccount.currentAccount.subscribe(
       (acc) => {
