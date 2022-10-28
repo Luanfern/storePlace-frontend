@@ -52,11 +52,11 @@ export class SideCalculationsComponent implements OnInit, DoCheck, AfterViewInit
           console.log(ret)
           if (ret.status == true) {
             this.modalService.changeContentModal(ret.message, 'green')
-            this.shoppingKartService.myShoppingKart = []
 
             const newCa = this.account.cA
             newCa.currency = ret.currency
             this.account.setCurrentAccount(newCa)
+            this.shoppingKartService.myShoppingKart.splice(0, this.shoppingKartService.myShoppingKart.length)
           } else {
             this.modalService.changeContentModal(ret.message, 'red')
             this.keepBuying = ret.message

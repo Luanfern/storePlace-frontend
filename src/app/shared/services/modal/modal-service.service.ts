@@ -8,10 +8,9 @@ import { ModalComponentComponent } from './modal-component/modal-component.compo
 })
 export class ModalServiceService {
 
-  public contentModal = new Subject<string>();
+  public contentModal = new Subject<{text: string, color: string}>();
   modal!: NgbModal
   title: string = ''
-  color: string = 'white'
 
   constructor(
     private ngModal: NgbModal,
@@ -23,7 +22,7 @@ export class ModalServiceService {
     this.title = title
     this.modal.open(ModalComponentComponent, { centered: true });
     setTimeout(() => {
-      this.contentModal.next(initialMessage)
+      this.contentModal.next({text: initialMessage, color: 'white'})
     }, 0)
     console.log(initialMessage)
   }
@@ -33,7 +32,6 @@ export class ModalServiceService {
   }
 
   changeContentModal(message: string, color: string){
-    this.color = color
-    this.contentModal.next(message)
+    this.contentModal.next({text: message, color: color})
   }
 }

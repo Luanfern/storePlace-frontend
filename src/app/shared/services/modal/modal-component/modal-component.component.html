@@ -1,9 +1,16 @@
 <div #modalContent >
-    <div class="modal-header">
-      <h4 class="modal-title">{{ title }}</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    <div class="modal-header"
+    [ngStyle]="{'background-color': contentMessageModal.color}">
+      <h4 class="modal-title"
+      [ngStyle]="{'color': contentMessageModal.color != 'white' ? 'white' : 'black'}"
+      >{{ title }}</h4>
+      <button [ngStyle]="{'color': contentMessageModal.color != 'white' ? 'white' : 'black'}"
+      type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
     </div>
-    <div class="modal-body">
-      <p>{{ contentMessageModal }}</p>
+    <div class="modal-body"
+    [ngStyle]="{'background-color': contentMessageModal.color}"
+    >
+      <p [ngStyle]="{'color': contentMessageModal.color != 'white' ? 'white' : 'black'}"
+      >{{ contentMessageModal.text }}</p>
     </div>
   </div>

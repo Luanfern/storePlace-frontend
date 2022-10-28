@@ -8,7 +8,7 @@ import { ModalServiceService } from '../modal-service.service';
 })
 export class ModalComponentComponent implements OnInit/*, OnDestroy*/ {
 
-  contentMessageModal: string = '123'; 
+  contentMessageModal: {text: string, color: string} = {text: '123', color: 'white'}; 
   subscriptionContentModal!: Subscription
   title: string = 'teste'
 
