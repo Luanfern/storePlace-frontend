@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { ProductInterface } from 'src/app/shared/Interfaces/product-interface';
+import { ShoppingKartService } from 'src/app/shared/services/shopping-kart/shopping-kart.service';
 
 @Component({
   selector: 'app-product-view',
@@ -23,7 +24,8 @@ export class ProductViewComponent implements OnInit {
   }
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private myShoppingKart: ShoppingKartService
   ) { }
 
   ngOnInit(): void {
@@ -31,14 +33,20 @@ export class ProductViewComponent implements OnInit {
     .pipe(take(1))
     .subscribe((p: any) => {
       this.product = p.product
+      console.log(this.myShoppingKart.myShoppingKart)
+      console.log(this.product.id)
+      const result = this.myShoppingKart.myShoppingKart.find((element) => element.id === p.product.id)
+      if(result != undefined) this.forRemove = true
     })
   }
 
-  clickActionButton(p: string/* ProductInterface */): void {
+  clickActionButton(p: ProductInterface): void {
     if (!this.forRemove) {
-      //return this.myShoppingKart.addProductToKart(p) 
+      this.forRemove = !this.forRemove
+      return this.myShoppingKart.addProductToKart(p) 
     } else {
-      //return this.myShoppingKart.removeProductToKart(p)
+      this.forRemove = !this.forRemove
+      return this.myShoppingKart.removeProductToKart(p)
     }
   }
 

@@ -37,22 +37,22 @@ export class AppComponent implements OnInit {
             this.route.navigate(['login'])
             console.log(err.error.error)
           }),
-        ).subscribe((acc: any) => {
+        ).subscribe(async (acc: any) => {
           this.automaticAuth = false
           console.log(acc)
           if (acc.ignore) {
+            this.getKartList()
             this.myAccount.setIslogged()
             this.myAccount.setCurrentAccount(acc.acc)
             this.modalService.closeModal()
-            this.getKartList()
           } else {
             if (acc.status == false) {
               this.modalService.changeContentModal(acc.error, 'white')
               this.route.navigate(['login'])
             } else {
+              this.getKartList()
               this.myAccount.setIslogged()
               this.myAccount.setCurrentAccount(acc.acc)
-              this.getKartList()
             }
           }
         }
@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
     this.myShoppingKart.getKartList()
       .pipe(take(1))
       .subscribe((p: any) => {
-        console.log(p.products)
         if (p.status == true) {
           this.myShoppingKart.myShoppingKart.push(...p.products)
         }

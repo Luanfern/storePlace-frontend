@@ -42,7 +42,7 @@ export class ShoppingKartComponent implements OnInit {
   }
 
   kbgetter(): string {
-    if (this.currentCurrency == undefined || this.currentCurrency <= 0.0) {
+    if (this.currentCurrency <= 0.0) {
       return 'Indisponível! Verifique seu Saldo.'
     } else {
       return ''

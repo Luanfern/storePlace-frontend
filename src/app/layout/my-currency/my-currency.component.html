@@ -11,14 +11,14 @@
     </div>
     <div class="title">PEDIDOS</div>
     <div class="myExtract" *ngIf="extract$ | async as extracts; else carregandoExtrato">
-        <table class="extractTable">
+        <table class="extractTable" *ngIf="extracts.length > 0; else notExtracts">
             <tr>
               <th>Valor Total</th>
               <th>Quantidade de Produtos</th>
               <th>Data</th>
             </tr>
             <tr class="extractItem" *ngFor="let ex of extracts">
-              <td class="numberAlign">{{ ex.total | currency }}</td>
+              <td class="numberAlign">{{ ex.total | currency }} </td>
               <td>{{ ex.listProducts.length }}</td>
               <td>{{ ex.date | date }}</td>
             </tr>
@@ -50,4 +50,8 @@
 <ng-template #carregandoExtrato>
     <div class="spinner-border" role="status"></div>
     <div>Carregando Pedidos</div>
+</ng-template>
+
+<ng-template #notExtracts>
+    <div><b>Sem Pedidos</b></div>
 </ng-template>

@@ -27,7 +27,7 @@ export class SideCalculationsComponent implements OnInit, DoCheck, AfterViewInit
 
   ngAfterViewInit(): void {
     this.calcFinalValue()
-    this.disable = this.keepBuying != '' ? false : true
+    this.disable = this.keepBuying != '' ? true : false
     console.log(this.disable)
   }
 
@@ -52,18 +52,18 @@ export class SideCalculationsComponent implements OnInit, DoCheck, AfterViewInit
           console.log(ret)
           if (ret.status == true) {
             this.modalService.changeContentModal(ret.message, 'green')
+            this.shoppingKartService.myShoppingKart = []
+
+            const newCa = this.account.cA
+            newCa.currency = ret.currency
+            this.account.setCurrentAccount(newCa)
           } else {
             this.modalService.changeContentModal(ret.message, 'red')
+            this.keepBuying = ret.message
           }
-          this.shoppingKartService.myShoppingKart = []
-
-          const newCa = this.account.cA
-          newCa.currency = ret.currency
-          this.account.setCurrentAccount(newCa)
-          
           setTimeout(() => {
             this.modalService.closeModal()
-          }, 2500);
+          }, 2000);
         })
       ).subscribe()
     console.log('comprar!')
